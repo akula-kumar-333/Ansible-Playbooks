@@ -1,0 +1,12 @@
+---
+- name: deploying ecomm frontend app on apache
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: deploying ecomm app
+    git:
+      dest: /var/www/html
+      repo: https://github.com/ravi2krishna/ecomm.git
+
+...

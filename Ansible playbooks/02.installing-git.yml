@@ -1,0 +1,12 @@
+---
+- name: downloading git
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: downloading git
+    yum:
+      name: git
+      state: latest
+
+...

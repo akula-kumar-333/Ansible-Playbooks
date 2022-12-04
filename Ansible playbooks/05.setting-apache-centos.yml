@@ -1,0 +1,50 @@
+---
+- name: settingup httpd for centos
+  hosts: g1
+  become: yes
+
+  tasks:
+  - name: installing httpd for centos
+    yum:
+      name: httpd
+      state: present
+    when: ansible_distribution == "CentOS" or ansible_distribution == "Amazon"
+
+  - name: starting httpd for centos
+    service:
+      name: httpd
+      state: started
+    when: ansible_distribution == "CentOS" or ansible_distribution == "Amazon"
+
+  - name: enabling httpd for centos
+    service:
+      name: httpd
+      enabled: yes
+    when: ansible_distribution == "CentOS" or ansible_distribution == "Amazon"
+
+- name: settingup apache2 for ubuntu
+  hosts: g2
+  become: yes
+
+
+  tasks:
+  - name: installing apache2 for ubuntu
+    apt:
+      name: apache2
+      state: present
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+  - name: starting apache2 for ubuntu
+    service:
+      name: apache2
+      state: started
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+  - name: enabling apache2 for centos
+    service:
+      name: apache2
+      enabled: yes
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+
+...
