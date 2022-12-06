@@ -1,0 +1,14 @@
+---
+- name: settingup static file on apache directory
+  hosts: all
+  become: yes
+  vars:
+    user_name: Kumar Akula
+
+  tasks:
+  - name: settingup static file
+    template:
+      src: dynamic.j2
+      dest: /var/www/html/dynamic.html
+
+...
