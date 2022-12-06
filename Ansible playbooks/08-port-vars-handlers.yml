@@ -1,0 +1,23 @@
+---
+- name: settingup static file on apache directory
+  hosts: g2
+  become: yes
+  vars:
+    httpd_port: 9090
+
+  tasks:
+  - name: changing port
+    template:
+      src: httpd.j2
+      dest: /var/www/html/httpd.conf
+    notify:
+     - Restarted
+
+  handlers:
+  - name: Restarted
+    service:
+      name: apache2
+      state: restarted
+
+
+...
